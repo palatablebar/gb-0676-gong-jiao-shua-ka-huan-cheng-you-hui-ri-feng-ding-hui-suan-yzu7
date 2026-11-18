@@ -9,6 +9,8 @@ def sample(): return load_sample("dirty.csv")
 @pytest.fixture
 def result(sample): return calculate(sample)
 @pytest.fixture
+def night_result(): return calculate(load_sample("night.csv"))
+@pytest.fixture
 def client():
     from app.main import create_app
     return create_app().test_client()

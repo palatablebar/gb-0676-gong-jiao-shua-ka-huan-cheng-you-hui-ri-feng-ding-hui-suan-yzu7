@@ -31,6 +31,9 @@
 | TRAP-11 | 混合偏移 | 落错版本 | UTC归整 | `app/values.py` | `tests/test_m3.py::test_timezone_equal` |
 | TRAP-23 | 换乘截止点 | 重复优惠 | 截止点排除 | `app/modules/m5_discounts/rules.py` | `tests/test_m5.py::test_exact_window_excluded` |
 | TRAP-25 | 票价重叠 | 随意取版 | 冲突隔离 | `app/modules/m3_fares/rules.py` | `tests/test_m3.py::test_overlap_rejected` |
+| TRAP-30 | 跨夜换乘拆日 | 按自然日00:00切分，后程重累计封顶 | 统一运营日截止点04:00，末班/首班仅校验不逐线归属 | `app/service_day.py`、`app/modules/m4_journeys/rules.py` | `tests/test_m4.py::test_after_midnight_belongs_to_previous_service_day`、`tests/test_m5.py::test_overnight_chain_keeps_single_cap` |
+| TRAP-31 | 首班车沿用前夜额度 | 截止点选错，早高峰少扣 | 截止点后开启新运营日，锚点不跨截止点 | `app/service_day.py` | `tests/test_m5.py::test_first_bus_does_not_inherit_overnight_quota` |
+| TRAP-32 | 未核对先发布 | 差异未裁决即出日结 | 差异行未清零时ready=False、publish_blocked=True | `app/modules/m7_settlement/rules.py` | `tests/test_m7.py::test_differences_block_publication` |
 
 ## 对账规则
 
